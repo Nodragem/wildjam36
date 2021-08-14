@@ -1,0 +1,45 @@
+[gd_resource type="ShaderMaterial" load_steps=8 format=2]
+
+[ext_resource path="res://Shaders/wind_grass.shader" type="Shader" id=1]
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0.825967, 0.903315, 1 )
+colors = PoolColorArray( 0.556863, 0.054902, 0.315196, 1, 0.321569, 0.890196, 0.341176, 1, 0.836275, 0.887207, 0.370825, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="OpenSimplexNoise" id=7]
+period = 26.7
+persistence = 0.151
+lacunarity = 2.08
+
+[sub_resource type="NoiseTexture" id=8]
+seamless = true
+noise = SubResource( 7 )
+
+[sub_resource type="OpenSimplexNoise" id=5]
+period = 109.1
+persistence = 0.138
+lacunarity = 0.44
+
+[sub_resource type="NoiseTexture" id=6]
+seamless = true
+noise = SubResource( 5 )
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/mask_center = Vector3( 0, 0, 0 )
+shader_param/mask_radius = 0.4
+shader_param/mask_border_radius = 0.01
+shader_param/emission_energy = 3.0
+shader_param/object_color = Color( 0.686275, 0.384314, 0.384314, 1 )
+shader_param/mask_color = Color( 0.976471, 0.862745, 0.607843, 1 )
+shader_param/wind_speed = 0.2
+shader_param/wind_strength = 2.0
+shader_param/wind_texture_tile_size = 20.0
+shader_param/wind_vertical_strength = 0.3
+shader_param/wind_horizontal_direction = Vector2( 1, 0.5 )
+shader_param/ghost_noise = SubResource( 8 )
+shader_param/color_ramp = SubResource( 4 )
+shader_param/wind_noise = SubResource( 6 )
