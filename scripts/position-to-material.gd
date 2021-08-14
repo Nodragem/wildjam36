@@ -1,14 +1,11 @@
 extends MeshInstance
 
-tool
-
-export(NodePath) var pathMaskObject
-var maskObject: MultiMeshInstance
+#tool
 
 var position: Vector3 = Vector3()
 var phi: float = 0
 var theta: float = 0
-var radius: float = 1.0
+var radius: float = 1.1
 
 var velocity: Vector2 = Vector2()
 var steering: Vector2 = Vector2()
@@ -20,11 +17,9 @@ export var angle_change = 0
 
 
 func _ready():
-	maskObject = get_node(pathMaskObject)
+	pass
 	
 func _process(_delta):
-	maskObject.get_material_override().set_shader_param("mask_center", global_transform.origin)
-	
 	steering = wander()
 	velocity = (velocity + steering).clamped(max_speed)
 	phi = phi + velocity.x
@@ -35,6 +30,14 @@ func _process(_delta):
 	position.z = radius * cos(theta)
 	
 	transform.origin = position
+	transform = align_with_y(transform, position.normalized())
+
+
+func align_with_y(xform, new_y):
+	xform.basis.y = new_y
+	xform.basis.x = -xform.basis.z.cross(new_y)
+	xform.basis = xform.basis.orthonormalized()
+	return xform
 
 
 func wander() -> Vector2: 
