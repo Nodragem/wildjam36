@@ -18,7 +18,10 @@ func _ready():
 		camera.current = true
 		inner_gymbal.add_child(camera)
 		camera.owner = owner
-		camera.transform.origin = Vector3(0,0,100)
+		camera.transform.origin = Vector3(0,0,1000)
+		
+		camera.global_transform = camera.global_transform.looking_at(-Vector3.UP, Vector3.UP)
+		camera.far = 3000
 	else:
 		camera = null
 

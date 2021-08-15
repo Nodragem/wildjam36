@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/planet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/solar_system.gd" type="Script" id=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.494118, 0.156863, 0.156863, 1 )
+
+[sub_resource type="SphereMesh" id=2]
+material = SubResource( 3 )
+
+[sub_resource type="OpenSimplexNoise" id=4]
+
+[sub_resource type="NoiseTexture" id=5]
+noise = SubResource( 4 )
+
+[sub_resource type="SpatialMaterial" id=6]
+albedo_color = Color( 0.909804, 0.0588235, 0.0588235, 1 )
+emission_enabled = true
+emission = Color( 1, 0.847059, 0.0156863, 1 )
+emission_energy = 1.01
+emission_operator = 1
+emission_on_uv2 = false
+emission_texture = SubResource( 5 )
+
+[node name="solar_system" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="planet" parent="." instance=ExtResource( 1 )]
+transform = Transform( 20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0 )
+mesh = SubResource( 2 )
+
+[node name="planet2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 25, 0, 0, 0, 25, 0, 0, 0, 25, 192.663, -51.1621, -162.253 )
+mesh = SubResource( 2 )
+
+[node name="planet3" parent="." instance=ExtResource( 1 )]
+transform = Transform( 15, 0, 0, 0, 15, 0, 0, 0, 15, 380.393, 34.1564, -62.8705 )
+mesh = SubResource( 2 )
+
+[node name="planet4" parent="." instance=ExtResource( 1 )]
+transform = Transform( 25, 0, 0, 0, 25, 0, 0, 0, 25, 614.87, 0, 0 )
+mesh = SubResource( 2 )
+
+[node name="planet5" parent="." instance=ExtResource( 1 )]
+transform = Transform( 35, 0, 0, 0, 35, 0, 0, 0, 35, 744.02, 92.3408, 162.362 )
+mesh = SubResource( 2 )
+
+[node name="planet6" parent="." instance=ExtResource( 1 )]
+transform = Transform( 50, 0, 0, 0, 50, 0, 0, 0, 50, 920.078, 1.55257, -81.0184 )
+mesh = SubResource( 2 )
+
+[node name="planet7" parent="." instance=ExtResource( 1 )]
+transform = Transform( 25, 0, 0, 0, 25, 0, 0, 0, 25, 1153, -57.445, 148.381 )
+mesh = SubResource( 2 )
+
+[node name="planet8" parent="." instance=ExtResource( 1 )]
+transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, 1373.15, 0, 69.7399 )
+mesh = SubResource( 2 )
+material/0 = SubResource( 6 )

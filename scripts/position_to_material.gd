@@ -20,6 +20,8 @@ func _ready():
 	pass
 	
 func _process(_delta):
+	if not visible:
+		pass
 	steering = wander()
 	velocity = (velocity + steering).clamped(max_speed)
 	phi = phi + velocity.x
