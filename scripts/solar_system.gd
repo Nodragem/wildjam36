@@ -1,10 +1,12 @@
 extends Spatial
 
+export (Resource) var plant_status
 var planets = []
 var current_planet = 0
 
 func _ready():
 	yield(get_tree().root, "ready")
+	plant_status.reset()
 	planets = []
 	for child in get_children():
 		if child is Planet:

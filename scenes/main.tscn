@@ -1,10 +1,15 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scenes/solar_system.tscn" type="PackedScene" id=1]
 [ext_resource path="res://materials/level_environment.tres" type="Environment" id=2]
 [ext_resource path="res://scripts/interpolated_camera.gd" type="Script" id=3]
 [ext_resource path="res://scenes/spaceship.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/look_at.gd" type="Script" id=5]
+[ext_resource path="res://scenes/progress_bar.tscn" type="PackedScene" id=6]
+[ext_resource path="res://textures/energy_bar_bg.png" type="Texture" id=7]
+[ext_resource path="res://textures/energy_bar_fill.png" type="Texture" id=8]
+[ext_resource path="res://textures/Glory-VariableFont_wght.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://data/plant_status.tres" type="Resource" id=10]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.67451, 1, 0.203922, 1 )
@@ -18,6 +23,18 @@ emission_on_uv2 = false
 material = SubResource( 1 )
 top_radius = 0.001
 
+[sub_resource type="DynamicFont" id=3]
+size = 35
+outline_size = 2
+outline_color = Color( 0.603922, 0.517647, 0.4, 1 )
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 35
+outline_size = 2
+outline_color = Color( 0.603922, 0.517647, 0.4, 1 )
+font_data = ExtResource( 9 )
+
 [node name="level" type="Spatial"]
 
 [node name="spaceship" parent="." instance=ExtResource( 4 )]
@@ -25,6 +42,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 66.4979 )
 
 [node name="solar_system" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.456543, -36.2282, -19.462 )
+plant_status = ExtResource( 10 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 75.8024 )
@@ -51,3 +69,47 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 2 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bars" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 1920.0
+margin_bottom = 108.0
+
+[node name="PlantLifeBar" parent="MarginContainer/Bars" instance=ExtResource( 6 )]
+margin_bottom = 52.0
+tracked_value = ExtResource( 10 )
+signal_name = "health_changed"
+
+[node name="PlantProgress" parent="MarginContainer/Bars" instance=ExtResource( 6 )]
+margin_top = 56.0
+margin_bottom = 108.0
+tracked_value = ExtResource( 10 )
+signal_name = "progress_changed"
+
+[node name="MarginContainer" parent="MarginContainer/Bars/PlantProgress" index="0"]
+margin_bottom = 52.0
+
+[node name="Background" parent="MarginContainer/Bars/PlantProgress/MarginContainer" index="0"]
+margin_bottom = 52.0
+
+[node name="Label" parent="MarginContainer/Bars/PlantProgress/MarginContainer/Background" index="0"]
+custom_fonts/font = SubResource( 3 )
+text = "Plant Progress"
+
+[node name="TextureProgress" parent="MarginContainer/Bars/PlantProgress" index="1"]
+margin_bottom = 52.0
+texture_under = ExtResource( 7 )
+texture_progress = ExtResource( 8 )
+
+[node name="Number" parent="MarginContainer/Bars/PlantProgress/TextureProgress" index="0"]
+custom_fonts/font = SubResource( 4 )
+
+[node name="Tween" type="Tween" parent="MarginContainer"]
+
+[editable path="MarginContainer/Bars/PlantProgress"]

@@ -3,7 +3,7 @@ extends StaticBody
 class_name Planet
 
 export var radius := 1.0
-export(Resource) var resource
+export(Mesh) var mesh
 
 onready var multimesh = $MultiMeshInstance.multimesh
 onready var walking_head = $WalkingHead
@@ -21,7 +21,7 @@ func _ready():
 	multimesh.transform_format = MultiMesh.TRANSFORM_3D
 	multimesh.instance_count = 256
 	multimesh.visible_instance_count = 0
-	multimesh.mesh = resource
+	multimesh.mesh = mesh
 	$MultiMeshInstance.multimesh = multimesh
 	
 	

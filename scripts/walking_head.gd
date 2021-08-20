@@ -1,7 +1,7 @@
 extends MeshInstance
 
 #tool
-
+export (Resource) var plant_status
 var position: Vector3 = Vector3()
 var phi: float = 0
 var theta: float = 0
@@ -68,3 +68,13 @@ func set_angle(vector: Vector2, value:float) -> Vector2:
    vector.x = cos(value) * length
    vector.y = sin(value) * length
    return vector
+
+
+
+func take_damage(amount):
+	plant_status.take_damage(amount)
+
+
+func _on_Area_area_entered(area):
+	if area.is_in_group("bullets"):
+		take_damage(area.damage)
