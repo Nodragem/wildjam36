@@ -10,10 +10,10 @@ var radius: float = 1.1
 var velocity: Vector2 = Vector2()
 var steering: Vector2 = Vector2()
 var wander_angle = 0
-export var max_speed: float = 2
+export var max_speed: float = 2.0
 export var circle_distance = 0.5
-export var circle_radius = 1
-export var angle_change = 0
+export var circle_radius = 1.0
+export var angle_change = 0.0
 
 
 func _ready():

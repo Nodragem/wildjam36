@@ -1,5 +1,5 @@
 tool
-extends MeshInstance
+extends StaticBody
 class_name Planet
 
 export var radius := 1.0

@@ -2,7 +2,8 @@ extends KinematicBody
 
 export (PackedScene) var Bullet = preload("res://scenes/bullet.tscn")
 
-export var max_speed = 50
+export var max_speed = 100
+export var min_speed = 10
 export var acceleration = 0.6
 export var pitch_speed = 1.5
 export var roll_speed = 1.9
