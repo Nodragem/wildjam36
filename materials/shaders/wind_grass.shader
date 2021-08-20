@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode cull_disabled, unshaded;
+render_mode cull_disabled;
 
 uniform float wind_speed = 0.2;
 uniform float wind_strength = 2.0;
