@@ -5,6 +5,8 @@ class_name Planet
 export var radius := 1.0
 export(Mesh) var mesh
 
+signal spike_planted
+
 onready var multimesh = $MultiMeshInstance.multimesh
 onready var walking_head = $WalkingHead
 onready var timer = $Timer
@@ -39,6 +41,7 @@ func _process(_delta):
 		buffer_transform = walking_head.transform
 		buffer_transform = buffer_transform.scaled(Vector3.ONE)
 		multimesh.set_instance_transform(current_id, buffer_transform)
+		emit_signal("spike_planted")
 		current_id += 1
 		multimesh.visible_instance_count = current_id
 		if current_id == multimesh.instance_count:

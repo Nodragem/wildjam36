@@ -12,6 +12,7 @@ func _ready():
 		if child is Planet:
 			planets.append(child)
 			child.connect("conquered", self, "on_planet_conquered")
+			child.connect("spike_planted", self, "on_planted_spike")
 	planets[current_planet].current_state = Planet.State.IN_PROGRESS 
 
 func on_planet_conquered():
@@ -21,3 +22,6 @@ func on_planet_conquered():
 		print("GAME OVER!")
 	else:
 		planets[current_planet].current_state = Planet.State.IN_PROGRESS
+
+func on_planted_spike():
+	plant_status.make_progress(1)

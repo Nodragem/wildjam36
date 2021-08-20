@@ -23,7 +23,7 @@ func get_input(delta):
 	if Input.is_action_pressed("throttle_up"):
 		forward_speed = lerp(forward_speed, max_speed, acceleration * delta)
 	if Input.is_action_pressed("throttle_down"):
-		forward_speed = lerp(forward_speed, 0, acceleration * delta)
+		forward_speed = lerp(forward_speed, min_speed, acceleration * delta)
 
 	pitch_input = lerp(pitch_input,
 			Input.get_action_strength("pitch_up") - Input.get_action_strength("pitch_down"),
