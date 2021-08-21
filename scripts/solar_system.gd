@@ -3,6 +3,7 @@ extends Spatial
 export (Resource) var plant_status
 var planets = []
 var current_planet = 0
+signal planet_changed
 
 func _ready():
 	yield(owner, "ready")
@@ -22,6 +23,7 @@ func on_planet_conquered():
 		print("GAME OVER!")
 	else:
 		planets[current_planet].current_state = Planet.State.IN_PROGRESS
+		emit_signal("planet_changed", planets[current_planet].get_path())
 
 func on_planted_spike():
 	plant_status.make_progress(1)

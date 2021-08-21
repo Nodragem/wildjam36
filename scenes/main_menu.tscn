@@ -1,0 +1,112 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://textures/title_screen.jpg" type="Texture" id=1]
+[ext_resource path="res://textures/button_start.png" type="Texture" id=2]
+[ext_resource path="res://textures/title.png" type="Texture" id=3]
+[ext_resource path="res://scripts/main_menu.gd" type="Script" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "menu"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5, 5.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 127, -1308.02 ), Vector2( 127, 0 ), Vector2( 127, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Control:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 5, 7 ),
+"transitions": PoolRealArray( 1, 0.258816, 1 ),
+"update": 0,
+"values": [ Color( 0.517647, 0.443137, 0.443137, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("TextureRect:rect_size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1666, 2794 ), Vector2( 1666, 2794 ) ]
+}
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.261719, 0.0858765, 0.231859, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -833.0
+margin_top = -1194.01
+margin_right = 833.0
+margin_bottom = 1599.99
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "menu"
+anims/menu = SubResource( 1 )
+
+[node name="Control" type="Control" parent="."]
+modulate = Color( 0.758824, 0.721569, 0.721569, 0 )
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="title" type="Sprite" parent="Control"]
+position = Vector2( 736.085, 275.032 )
+scale = Vector2( 0.924134, 0.924134 )
+texture = ExtResource( 3 )
+
+[node name="TextureButton" type="TextureButton" parent="Control"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 728.898
+margin_top = 777.222
+margin_right = 1078.9
+margin_bottom = 900.222
+texture_normal = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_down" from="Control/TextureButton" to="." method="_on_TextureButton_button_down"]

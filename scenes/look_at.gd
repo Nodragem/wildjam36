@@ -14,3 +14,9 @@ func _physics_process(delta):
 		return
 	var nb = global_transform.looking_at(target.global_transform.origin, target.transform.basis.y)
 	global_transform = global_transform.interpolate_with(nb, lerp_speed * delta)
+
+
+func _on_solar_system_planet_changed(new_target_path):
+	print("target changed to "+new_target_path)
+	target = get_node(new_target_path)
+	
