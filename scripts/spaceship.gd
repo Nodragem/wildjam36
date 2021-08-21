@@ -52,7 +52,7 @@ func _physics_process(delta):
 	transform.basis = transform.basis.rotated(transform.basis.z, roll_input * roll_speed * delta)
 	transform.basis = transform.basis.rotated(transform.basis.x, - pitch_input * pitch_speed * delta)
 	transform.basis = transform.basis.rotated(transform.basis.y, yaw_input * yaw_speed * delta)
-	$spaceship_mesh.rotation.z = lerp($spaceship_mesh.rotation.z, yaw_input, yaw_speed * delta)
+	$space_ship.rotation.z = lerp($space_ship.rotation.z, yaw_input, yaw_speed * delta)
 	transform.basis = transform.basis.orthonormalized()
 	velocity = -transform.basis.z * forward_speed
 	move_and_collide(velocity * delta)

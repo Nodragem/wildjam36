@@ -67,9 +67,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -833.0
-margin_top = -1194.01
+margin_top = -540.0
 margin_right = 833.0
-margin_bottom = 1599.99
+margin_bottom = 2254.0
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 5
@@ -82,7 +82,6 @@ autoplay = "menu"
 anims/menu = SubResource( 1 )
 
 [node name="Control" type="Control" parent="."]
-modulate = Color( 0.758824, 0.721569, 0.721569, 0 )
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
