@@ -11,3 +11,6 @@ func _ready():
 func _on_game_over():
 	animation.play("FadeIn")
 
+
+func _on_Button_button_down():
+	get_tree().reload_current_scene()

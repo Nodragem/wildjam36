@@ -13,11 +13,12 @@ export (int) var progress_max_value
 var health_value = 0
 var progress_value = 0
 
-var is_dead = false
+var is_gameover = false
 
 func reset():
 	health_value = health_max_value
 	progress_value = 0
+	is_gameover = false
 	emit_signal("health_changed", health_value)
 	emit_signal("progress_changed", progress_value)
 
@@ -25,12 +26,13 @@ func reset():
 func take_damage(amount):
 	health_value = max(0, health_value - amount)
 	emit_signal("health_changed", health_value)
-	if health_value <= 0 and not is_dead:
+	if health_value <= 0 and not is_gameover:
 		emit_signal("is_dead")
-		is_dead = true
+		is_gameover = true
 
 func make_progress(amount):
 	progress_value = max(0, progress_value + amount)
 	emit_signal("progress_changed", progress_value)
-	if progress_value >= progress_max_value and not is_dead:
+	if progress_value >= progress_max_value and not is_gameover:
 		emit_signal("reached_sun")
+		is_gameover = true

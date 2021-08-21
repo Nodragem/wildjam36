@@ -5,7 +5,7 @@ var planets = []
 var current_planet = 0
 
 func _ready():
-	yield(get_tree().root, "ready")
+	yield(owner, "ready")
 	plant_status.reset()
 	planets = []
 	for child in get_children():

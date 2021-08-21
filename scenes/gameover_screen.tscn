@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://textures/font_menu.tres" type="DynamicFont" id=1]
 [ext_resource path="res://scripts/gameover_screen.gd" type="Script" id=2]
 [ext_resource path="res://data/plant_status.tres" type="Resource" id=3]
+[ext_resource path="res://textures/button_normal.png" type="Texture" id=4]
+[ext_resource path="res://textures/button_clicked.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "FadeIn"
@@ -55,6 +57,12 @@ tracks/3/keys = {
 "values": [ Color( 0.988235, 1, 0.976471, 0 ), Color( 0.988235, 1, 0.976471, 1 ), Color( 0.988235, 1, 0.976471, 1 ) ]
 }
 
+[sub_resource type="InputEventAction" id=2]
+action = "retry"
+
+[sub_resource type="ShortCut" id=3]
+shortcut = SubResource( 2 )
+
 [node name="GameOverScreen" type="Panel"]
 modulate = Color( 0.988235, 1, 0.976471, 1 )
 anchor_right = 1.0
@@ -83,3 +91,21 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/FadeIn = SubResource( 1 )
+
+[node name="Button" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -201.0
+margin_top = -368.0
+margin_right = 199.0
+margin_bottom = -233.0
+shortcut = SubResource( 3 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_down" from="Button" to="." method="_on_Button_button_down"]
