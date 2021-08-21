@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/bullet.gd" type="Script" id=1]
+[ext_resource path="res://models/green.material" type="Material" id=2]
 
 [sub_resource type="CapsuleMesh" id=1]
+material = ExtResource( 2 )
 radius = 0.3
 
 [sub_resource type="CapsuleShape" id=2]
