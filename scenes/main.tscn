@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/solar_system.tscn" type="PackedScene" id=1]
 [ext_resource path="res://materials/level_environment.tres" type="Environment" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://textures/energy_bar_fill.png" type="Texture" id=8]
 [ext_resource path="res://textures/Glory-VariableFont_wght.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://data/plant_status.tres" type="Resource" id=10]
+[ext_resource path="res://scenes/gameover_screen.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/winning_screen.tscn" type="PackedScene" id=12]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.67451, 1, 0.203922, 1 )
@@ -45,6 +47,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.456543, -36.2282, -19.462 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 75.8024 )
+environment = ExtResource( 2 )
 current = true
 far = 3000.0
 script = ExtResource( 3 )
@@ -66,49 +69,56 @@ transform = Transform( 0.0431779, -0.839516, 0.541617, 0.0667148, 0.543336, 0.83
 light_color = Color( 0.988235, 0.94902, 0.870588, 1 )
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource( 2 )
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="GUI" type="Control" parent="."]
 anchor_right = 1.0
-anchor_bottom = 0.1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+anchor_bottom = 1.0
 
-[node name="Bars" type="VBoxContainer" parent="MarginContainer"]
+[node name="Bars" type="VBoxContainer" parent="GUI"]
 margin_right = 1920.0
-margin_bottom = 108.0
+margin_bottom = 100.0
+size_flags_vertical = 0
 
-[node name="PlantLifeBar" parent="MarginContainer/Bars" instance=ExtResource( 6 )]
-margin_bottom = 52.0
+[node name="PlantLifeBar" parent="GUI/Bars" instance=ExtResource( 6 )]
+margin_bottom = 48.0
 tracked_value = ExtResource( 10 )
 signal_name = "health_changed"
 
-[node name="PlantProgress" parent="MarginContainer/Bars" instance=ExtResource( 6 )]
-margin_top = 56.0
-margin_bottom = 108.0
+[node name="PlantProgress" parent="GUI/Bars" instance=ExtResource( 6 )]
+margin_top = 52.0
+margin_bottom = 100.0
 tracked_value = ExtResource( 10 )
 signal_name = "progress_changed"
 
-[node name="MarginContainer" parent="MarginContainer/Bars/PlantProgress" index="0"]
-margin_bottom = 52.0
+[node name="MarginContainer" parent="GUI/Bars/PlantProgress" index="0"]
+margin_bottom = 48.0
 
-[node name="Background" parent="MarginContainer/Bars/PlantProgress/MarginContainer" index="0"]
-margin_bottom = 52.0
+[node name="Background" parent="GUI/Bars/PlantProgress/MarginContainer" index="0"]
+margin_bottom = 48.0
 
-[node name="Label" parent="MarginContainer/Bars/PlantProgress/MarginContainer/Background" index="0"]
+[node name="Label" parent="GUI/Bars/PlantProgress/MarginContainer/Background" index="0"]
 custom_fonts/font = SubResource( 3 )
 text = "Plant Progress"
 
-[node name="TextureProgress" parent="MarginContainer/Bars/PlantProgress" index="1"]
-margin_bottom = 52.0
+[node name="TextureProgress" parent="GUI/Bars/PlantProgress" index="1"]
+margin_bottom = 48.0
 texture_under = ExtResource( 7 )
 texture_progress = ExtResource( 8 )
 
-[node name="Number" parent="MarginContainer/Bars/PlantProgress/TextureProgress" index="0"]
+[node name="Number" parent="GUI/Bars/PlantProgress/TextureProgress" index="0"]
 custom_fonts/font = SubResource( 4 )
 
-[node name="Tween" type="Tween" parent="MarginContainer"]
+[node name="GameOverScreen" parent="GUI" instance=ExtResource( 11 )]
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+signal_name = "reached_sun"
 
-[editable path="MarginContainer/Bars/PlantProgress"]
+[node name="Tween" type="Tween" parent="GUI"]
+
+[node name="WinningScreen" parent="GUI" instance=ExtResource( 12 )]
+visible = false
+signal_name = "is_dead"
+
+[editable path="GUI/Bars/PlantProgress"]

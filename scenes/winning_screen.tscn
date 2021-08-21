@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/gameover_screen.tscn" type="PackedScene" id=1]
+
+[node name="WinningScreen" instance=ExtResource( 1 )]
+
+[node name="RichTextLabel" parent="." index="0"]
+bbcode_text = "[center][color=#ffb700][font=res://textures/font_menu_congratulation.tres][wave amp=100 freq=10]CONGRATULATION !![/wave][/font][/color]
+
+You've destroyed the weed and saved the solar system.
+You've probably deserved a day off ! [/center]"
+text = "CONGRATULATION !!
+
+You've destroyed the weed and saved the solar system.
+You've probably deserved a day off ! "
