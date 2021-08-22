@@ -134,6 +134,9 @@ custom_fonts/font = ExtResource( 13 )
 text = "Mode: Impossible"
 align = 2
 script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 game_options = ExtResource( 15 )
 
 [connection signal="planet_changed" from="solar_system" to="Camera/TargetIndicator" method="_on_solar_system_planet_changed"]
