@@ -30,7 +30,7 @@ height = 0.1
 radius = 0.49285
 
 [node name="WalkingHead" type="MeshInstance"]
-transform = Transform( 0.7512, -0.583103, -0.309336, -0.511857, -0.218693, -0.830768, 0.416774, 0.782409, -0.462748, -0.641413, -0.240562, 0.86065 )
+transform = Transform( 0.7512, -0.583103, -0.309336, -0.511857, -0.218693, -0.830768, 0.416774, 0.782409, -0.462748, 0, 0, 1.1 )
 mesh = SubResource( 2 )
 material/0 = null
 script = ExtResource( 1 )
@@ -51,3 +51,5 @@ shape = SubResource( 5 )
 transform = Transform( -0.4, 0, -3.49691e-08, 0, 0.4, 0, 3.49691e-08, 0, -0.4, 0, -0.154, 0 )
 
 [connection signal="area_entered" from="Area" to="." method="_on_Area_area_entered"]
+
+[editable path="plant"]

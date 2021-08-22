@@ -4,6 +4,7 @@ export (Resource) var game_options
 var main_scene
 
 func _ready():
+	game_options.difficulty = $Control/OptionButton.selected
 	main_scene = preload("res://scenes/main.tscn")
 
 
