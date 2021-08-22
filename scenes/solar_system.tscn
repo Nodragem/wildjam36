@@ -1,11 +1,12 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/planet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/solar_system.gd" type="Script" id=2]
 [ext_resource path="res://scenes/spike.tres" type="CylinderMesh" id=3]
 [ext_resource path="res://data/plant_status.tres" type="Resource" id=4]
+[ext_resource path="res://data/game_options.tres" type="Resource" id=5]
 
-[sub_resource type="MultiMesh" id=1]
+[sub_resource type="MultiMesh" id=7]
 transform_format = 1
 instance_count = 256
 visible_instance_count = 0
@@ -42,6 +43,7 @@ emission_texture = SubResource( 5 )
 [node name="solar_system" type="Spatial"]
 script = ExtResource( 2 )
 plant_status = ExtResource( 4 )
+game_options = ExtResource( 5 )
 
 [node name="planet" parent="." instance=ExtResource( 1 )]
 transform = Transform( 20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0 )
@@ -68,7 +70,7 @@ transform = Transform( 25, 0, 0, 0, 25, 0, 0, 0, 25, 1153, -57.445, 148.381 )
 transform = Transform( 100, 0, 0, 0, 100, 0, 0, 0, 100, 1373.15, 0, 69.7399 )
 
 [node name="MultiMeshInstance" parent="planet8" index="0"]
-multimesh = SubResource( 1 )
+multimesh = SubResource( 7 )
 
 [node name="MeshInstance" parent="planet8" index="4"]
 material/0 = SubResource( 6 )

@@ -38,7 +38,7 @@ circle_radius = 0.1
 angle_change = 0.1
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.15
+wait_time = 0.3
 one_shot = true
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
